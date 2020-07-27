@@ -244,13 +244,17 @@ export namespace MapViewUtils {
             ),
             0
         );
-        const heading =
-            THREE.MathUtils.radToDeg(sphericalCoordinates.azimuth + Math.PI) + deltaAzimuthDeg;
+        const headingRad = sphericalCoordinates.azimuth - Math.PI;
+        const oldHeading = THREE.MathUtils.radToDeg(
+            Math.atan2(Math.sin(headingRad), Math.cos(headingRad))
+        );
+        const newHeading = oldHeading + deltaAzimuthDeg;
+
         mapView.lookAt({
             target,
             distance: mapView.targetDistance,
             tilt,
-            heading
+            heading: newHeading
         });
     }
 

@@ -699,12 +699,10 @@ export class MapControls extends THREE.EventDispatcher {
 
         const initialTilt = this.currentTilt;
         const deltaAngle = this.m_currentTilt - initialTilt;
-        const oldCameraDistance = this.mapView.camera.position.z / Math.cos(initialTilt);
-        const newHeight = Math.cos(initialTilt) * oldCameraDistance;
 
         MapViewUtils.orbitFocusPoint(
             this.mapView,
-            newHeight - this.camera.position.z,
+            0,
             THREE.MathUtils.radToDeg(deltaAngle),
             this.m_maxTiltAngle
         );
